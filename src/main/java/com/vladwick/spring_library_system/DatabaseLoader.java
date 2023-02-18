@@ -29,11 +29,50 @@ public class DatabaseLoader implements CommandLineRunner {
 	@Override
 	public void run(String... strings) {
 
-		User vladwick = this.users.save(new User("vlad", "wick", "vladwick@gmail.com", "asd", "ADMIN"));
-		this.users.save(vladwick);
+		User vladwick = this.users.save(
+				new User(
+						"vlad",
+						"wick",
+						"vladwick@gmail.com",
+						"asd",
+						"ADMIN"
+				));
+		User asd = this.users.save(
+				new User(
+						"asd",
+						"asd",
+						"asd@gmail.com",
+						"asd",
+						"ADMIN"
+				));
+		User asd2 = this.users.save(
+				new User(
+						"asd2",
+						"asd2",
+						"asd2@gmail.com",
+						"asd2",
+						"ADMIN"
+				));
+//		User vladwick2 = this.users.save(
+//				new User(
+//						"vlad",
+//						"wick",
+//						"vladwick@gmail.com",
+//						"asd",
+//						"ADMIN"
+//				));
+		//this.users.save(vladwick);
 
 		SecurityContextHolder.getContext().setAuthentication(
-				new UsernamePasswordAuthenticationToken("vladwick", "doesn't matter",
+				new UsernamePasswordAuthenticationToken("vlad", "doesn't matter",
+						AuthorityUtils.createAuthorityList("ADMIN")));
+
+		SecurityContextHolder.getContext().setAuthentication(
+				new UsernamePasswordAuthenticationToken("asd", "doesn't matter",
+						AuthorityUtils.createAuthorityList("ADMIN")));
+
+		SecurityContextHolder.getContext().setAuthentication(
+				new UsernamePasswordAuthenticationToken("vladwick2", "doesn't matter",
 						AuthorityUtils.createAuthorityList("ADMIN")));
 
 		//this.books.save(new Book("Frodo", "Baggins", "ring bearer", "1293", vladwick));
