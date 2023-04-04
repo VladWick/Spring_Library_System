@@ -1,18 +1,18 @@
 package com.vladwick.spring_library_system.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
-//@Table(name = "users")
+@Table(name = "users")
+@Builder
+@AllArgsConstructor
 public class User {
-
-    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder(); // <1>
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,9 @@ public class User {
     @Version
     @JsonIgnore
     private Long version;
+
+    // @Column(name = "favourites")
+    // private List<Book> favouriteBooks;
 
     public User() {
 
@@ -94,7 +97,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = PASSWORD_ENCODER.encode(password);
+        this.password = password;
     }
 
     public Long getVersion() {

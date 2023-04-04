@@ -5,6 +5,8 @@ import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 @RepositoryRestResource(exported = false)
 public interface UserRepository extends Repository<User, Long> {
 
@@ -13,5 +15,11 @@ public interface UserRepository extends Repository<User, Long> {
     void deleteById(@Param("id") Long id);
 
     User findByName(String name);
+
+    List<User> findAll();
+
+    User getUserById(long id);
+
+    User findUserById(long id);
 
 }

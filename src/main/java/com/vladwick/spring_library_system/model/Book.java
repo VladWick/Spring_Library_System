@@ -1,19 +1,17 @@
 package com.vladwick.spring_library_system.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "books")
+@Table(name = "books")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", columnDefinition="text")
-    private String name;
+    @Column(name = "title", columnDefinition="text")
+    private String title;
 
     @Column(name = "author", columnDefinition="text")
     private String author;
@@ -21,8 +19,8 @@ public class Book {
     @Column(name = "image", columnDefinition="text")
     private String image;
 
-    @Column(name = "download_count")
-    private String download_count;
+    @Column(name = "downloadCount")
+    private Long downloadCount;
 
     @Column(name = "language")
     private String language;
@@ -30,20 +28,15 @@ public class Book {
     @Column(name = "link_to_the_text", columnDefinition="text")
     private String link_to_the_text;
 
-    //@Column(name = "user_who_added", columnDefinition="text")
-    //@JsonIgnore
-    private @ManyToOne User user;
-
     public Book() {
 
     }
 
-    public Book(String name, String author, String image, String download_count, User user) {
-        this.name = name;
+    public Book(String title, String author, String image, Long downloadCount) {
+        this.title = title;
         this.author = author;
         this.image = image;
-        this.download_count = download_count;
-        this.user = user;
+        this.downloadCount = downloadCount;
     }
 
     public long getId() {
@@ -55,11 +48,11 @@ public class Book {
     }
 
     public String getTitle() {
-        return name;
+        return title;
     }
 
     public void setTitle(String name) {
-        this.name = name;
+        this.title = name;
     }
 
     public String getAuthor() {
@@ -78,12 +71,12 @@ public class Book {
         this.image = image;
     }
 
-    public String getDownload_count() {
-        return download_count;
+    public Long getDownloadCount() {
+        return downloadCount;
     }
 
-    public void setDownload_count(String download_count) {
-        this.download_count = download_count;
+    public void setDownloadCount(Long download_count) {
+        this.downloadCount = download_count;
     }
 
     public String getLanguage() {
@@ -102,11 +95,4 @@ public class Book {
         this.link_to_the_text = link_to_the_text;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
